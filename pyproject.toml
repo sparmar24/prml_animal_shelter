@@ -8,23 +8,33 @@ dependencies = [
     "pandas>=2.2.3",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "dunk>=0.4.0a0",
+    "jupyter>=1.1.1",
+    "pre-commit>=4.0.0",
+    "pytest-cov>=5.0.0",
+    "pytest-sugar>=1.0.0",
+    "pytest>=8.3.3",
+    "ruff>=0.6.9",
+]
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
-[tool.ruff.lint]
-extend-select = [
+[tool.ruff]
+lint.extend-select = [
   "UP", # pyupgrade
   # "D", # pydocstyle
   "N", # PEP8 names
   "I", # isort
 ]
 
-# ignore = [
+# lint.ignore = [
 #   "D100",
 #   "D103"
 # ]
 
-[tool.ruff]
 exclude = [
   ".git",
   ".pyenv",
@@ -35,10 +45,5 @@ exclude = [
   ".venv"
 ]
 
-[project.optional-dependencies]
-dev = [
-    "dunk>=0.4.0a0",
-    "jupyter>=1.1.1",
-    "pre-commit>=4.0.0",
-    "ruff>=0.6.9",
-]
+[tool.pytest.ini_options]
+addopts = "-ra -q --cov --cov-report=term-missing"
